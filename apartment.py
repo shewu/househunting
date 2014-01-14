@@ -24,6 +24,12 @@ class Address(object):
 	def __str__(self):
 		return self.street + ' ' + self.city + ', ' + self.state + ' ' + self.zipcode
 
+	def __eq__(self, o):
+		return self.street == o.street and self.city == o.city and self.state == o.state and self.zipcode == o.zipcode
+
+	def __hash__(self):
+		return str(self).__hash__()
+
 
 class Apartment(object):
 	def __init__(self, address):
@@ -35,3 +41,9 @@ class Apartment(object):
 
 	def __str__(self):
 		return str(self.address)
+
+	def __eq__(self, o):
+		return self.address == o.address
+
+	def __hash__(self):
+		return str(self).__hash__()
