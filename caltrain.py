@@ -52,8 +52,13 @@ class Caltrain(object):
         Returns the minimum duration from city_a to city_b.
         """
         min_duration = float('inf')
-        idx_a = self._cities.index(city_a)
-        idx_b = self._cities.index(city_b)
+        try:
+            idx_a = self._cities.index(city_a)
+            idx_b = self._cities.index(city_b)
+        except:
+            # either city_a or city_b does not have a caltrain stop
+            return min_duration
+
         schedule = self._northbound if idx_a < idx_b else self._southbound
         trains = set(schedule[city_a].keys()) & set(schedule[city_b].keys())
 
